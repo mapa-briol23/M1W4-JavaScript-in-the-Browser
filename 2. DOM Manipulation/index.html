@@ -5,17 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        #favorite-subject {
+            background-color: #FDFD96;
+        }
+
+        .newly-created {
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
     <ul id="subjects-taken">
         <li>IT101 - Introduction to Programming</li>
+        <li>IT102 - Fundamentals of C#</li>
         <li>CS100 - Discrete Structures 1</li>
-        <li>IT114L - Web Systems and Technologies</li>
         <li>IT123P - Integrative Programming</li>
     </ul>
     <script>
-        // Relevant link: https://youtu.be/5fb2aPlgoys?si=oOB2OYliN078Ensg first 30 minutes of the video
+        // Resource: https://www.javascripttutorial.net/javascript-dom/
+        // Resource: https://youtu.be/5fb2aPlgoys?si=oOB2OYliN078Ensg
+        //          - see first 30 minutes of the video
 
         // Todo 2.1 Select the unordered list with the id "subjects-taken"
         // Relevant Link: https://dev.to/alternate_robot/dom-selectors-in-javascript-344i
@@ -35,7 +47,8 @@
         // Answer:
 
         // Todo 2.3 Create another list item, and add it as a child of the unordered list
-        // Relevant Link: https://developer.mozilla.org/en-US/docs/Web/API/Document_object_model/How_to_create_a_DOM_tree
+        //          Set the text of the list item to your favorite subject
+        // Resource: https://www.javascripttutorial.net/dom/manipulating/create-a-dom-element/
 
         const newItem = document.createElement("li");
         const newItemText = document.createTextNode("IT132L - Logic and Design Switching");
