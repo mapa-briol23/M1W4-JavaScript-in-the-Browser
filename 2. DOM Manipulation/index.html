@@ -36,7 +36,7 @@
         
         // Checkpoint 2.1 What are the other ways to select elements in the DOM?
         // Answer: You can select elements using document.querySelector, document.getElementsByClassName, 
-        // and document.getElementsByClassName
+        // and document.getElementsByTagName
         
         // Todo 2.2 Set the text of the first list item to "<>"
 
@@ -44,7 +44,12 @@
         firstItem[0].innerHTML = '<>';
 
         // Checkpoint 3.2 What is the difference between innerText, textContent, and innerHTML. When should you use one over the other
-        // Answer:
+        // Answer: innerText retrieves the text that an element and its child elements contain. If you only want to 
+        // see the content or text of an element without the formatting, it is best to use innerText. 
+        // textContent includes the text that is contained by an element and its children that are only used for 
+        // formatting. If you want to see the content of an element and its styling, it is best to use textContent.
+        // innerHtml retrieves every line of text contained within an element, including the HTML tags. If you want   
+        // to view all of the HTML syntax, such as formatting, line breaks, and spacing, it is best to use innerHTML.
 
         // Todo 2.3 Create another list item, and add it as a child of the unordered list
         //          Set the text of the list item to your favorite subject
@@ -66,11 +71,19 @@
 
         // Checkpoint 2.3 Checkpoint what is the difference between node and element
 
+        // A node is a name of an object in the DOM structure which can be a built-in DOM element like the document 
+        // or HTML tags such as <p> or <li> contained in a specific HTML code.
+        // An element in an HTML document is a specific kind of node that is formatted using a tag or an HTML tag.
+
         // Bonus Todo 2.6 Select the parent of the unordered list.
 
-        document.li.parentNode;
+        const subjectList = document.getElementById("subjects-taken");
+        const parentList = subjectList.parentNode;
 
         // Bonus Todo 2.7 Select the previous sibling of the list item you previously created
+
+        const prevSibling = document.getElementById("favorite-subject").previousSibling;
+
     </script>
 </body>
 
