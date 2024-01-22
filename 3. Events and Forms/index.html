@@ -10,19 +10,19 @@
         .grandparent{
             width: 300px;
             height: 300px;
-            background-color: red;
+            background-color: #FF0000; /* rgba(255,0,0) = monitor led lights, #FF0000 */ /* cymb (cyan, yellow, magenta, black) = for printing*/
         }
 
         .parent{
             width: 200px;
             height: 200px;
-            background-color: blue;
+            background-color: #0000FF;
         }
 
         .child{
             width: 100px;
             height: 100px;
-            background-color: green;
+            background-color: #00FF00;
         }
     </style>
 </head>
@@ -31,10 +31,10 @@
 <!-- Add an inline event handler that logs "From inline event hanlder" when the button is clicked -->
 <!-- Resource: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#inline_event_handlers_%E2%80%94_dont_use_these
             - See other event listener mechanisms section -->
-<button>Call inline event handler</button>
+<button onclick="console.log('From inline event handler');">Call inline event handler</button>
 
 <!-- Todo 3.3a Create a button with the text "Call addEventListener" -->
-<button>Call addEventListener</button>
+<button id="event-listener">Call addEventListener</button>
 
 <!-- Todo 3.4a Create a form that accepts the first name and last name of the user -->
 <form>
@@ -44,7 +44,7 @@
 </form>
 
 <script>
-    const results = {}
+    const results = {} 
     const firstNameInput = document.getElementById("firstName")
     const lastNameInput = document.getElementById("lastName")
     // Todo 3.4b When the user presses the submit form button, append the contents of the form to results. Then, display the content of results
@@ -52,10 +52,16 @@
     document.getElementById("submit-btn").addEventListener("click", (e) => {
         e.preventDefault() // prevents the page from being refreshed
         // additional validation
+        results.firstName = firstNameInput.value;
+        results.lastName = lastNameInput.value;
+
+        console.log(results);
+        /*
         console.log({
             firstName: firstNameInput.value,
             lastName: lastNameInput.value,
         })
+        */
         // post to server
     })
 </script>
@@ -64,8 +70,8 @@
     <h4>Todo 3.5</h4>
     <div class="grandparent">
         <div class="parent">
-            <div class="child">
-    
+            <div class="child"> <!--If an object is clicked and it is -->
+
             </div>
         </div>
     </div>
@@ -77,27 +83,115 @@
         // Todo 3.1 When the page has loaded, log "The page has loaded"
         // Resource: https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event
 
+        window.onload = function(){
+            console.log("The page has loaded");
+        }
+
         // Todo 3.3b Add an event handler for the button created in 2.3a.
         //          The event handler should log "From addEventListener" when the button is clicked
         // Resource: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#using_addeventlistener
         //          - See Using addEventListener() section
 
+        const addEventButton = document.getElementById("event-listener");
+
+        function logEvent() {
+            console.log("From addEventListener");
+        }
+
+        addEventButton.addEventListener("click", logEvent);
+        
         // Checkpoint 3.1 What is the difference between inline event handlers and addEventListener? When should you use one over the other?
-        // Answer: 
+        // Answer: Inline event handlers allow users to add event and attach it on the exact HTML tag. 
+        // addEventListener accepts the event to respond for and a second parameter that will be called, such as a 
+        // function, once the event is implemented. Using addEvenListener allows users to create multiple event 
+        // listeners unlike inline event handlers. 
         
         // Todo 3.5 add event listenders for the grandparent, parent, and child divs. 
         //          When clicked, the grandparent, parent, and child should log "Grandparent", "Parent", and "Child" respectively
         // Resource: https://youtu.be/XF1_MlZ5l6M?si=QrNjKXg-xXV6yghW @ 4:00 of the video
-        const grandparent = document.querySelector(".grandparent")
-        const parent = document.querySelector(".parent")
-        const child = document.querySelector(".child")
+
+        /* START OF TODO 3.5 CODE
+
+        const grandparent = document.querySelector(".grandparent");
+        const parent = document.querySelector(".parent");
+        const child = document.querySelector(".child");
+
+        function clickParent() {
+            console.log("Parent");
+        }
+
+        function clickChild() {
+            console.log("Child");
+        }
+        
+        function clickGrandparent() {
+            console.log("Grandparent");
+        }
+
+        child.addEventListener("click", clickChild);
+        parent.addEventListener("click", clickParent);
+        grandparent.addEventListener("click", clickGrandparent);
+
+        END OF TODO 3.5 CODE */
 
         // Checkpoint 3.2 What is event bubbling? How was it shown in Todo 3.5?
-        // Answer: 
+        // Answer: Event bubbling occurs when an element that has an event is triggered which traverses to or 
+        // bubbles up to its parent element and grandpa element until it reaches the root element. 
+        // In Todo 3.5, when the child element is clicked on, since it is contained in the parent and grandparent 
+        // div, it bubbles up to the parent unt finally to the grandparent. 
         
         // Bonus Todo 3.6 Change your code in the previous todo such that "grandparent" is displayed first
 
+        /* START OF TODO 3.6 CODE
+
+        const grandparent = document.querySelector(".grandparent");
+        const parent = document.querySelector(".parent");
+        const child = document.querySelector(".child");
+
+        function clickParent() {
+            console.log("Parent");
+        }
+
+        function clickChild() {
+            console.log("Child");
+        }
+        
+        function clickGrandparent() {
+            console.log("Grandparent");
+        }
+
+        child.addEventListener("click", clickChild);
+        parent.addEventListener("click", clickParent);
+        grandparent.addEventListener("click", clickGrandparent, true);
+
+        END OF TODO 3.6 CODE */
+
         // Bonus Todo 3.7 Change your code in the previous todo such that "parent" is never displayed
+
+        /* START OF 3.7 CODE
+
+        const grandparent = document.querySelector(".grandparent");
+        const parent = document.querySelector(".parent");
+        const child = document.querySelector(".child");
+
+        function clickChild() {
+            console.log("Child");
+        }
+        
+        function clickGrandparent() {
+            console.log("Grandparent");
+        }
+
+        child.addEventListener("click", clickChild);
+
+        parent.addEventListener("click", function(e) {
+            e.stopPropagation();
+            }
+        );
+
+        grandparent.addEventListener("click", clickGrandparent, true);
+
+        END OF 3.7 CODE */
 
     </script>
 </body>
